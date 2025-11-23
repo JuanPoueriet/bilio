@@ -1,0 +1,96 @@
+{
+  "name": "univeex-console-pagina-marketing--ssr=false",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "univeex-console-pagina-marketing--ssr=false/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/univeex-console-pagina-marketing--ssr=false",
+        "index": "univeex-console-pagina-marketing--ssr=false/src/index.html",
+        "main": "univeex-console-pagina-marketing--ssr=false/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "univeex-console-pagina-marketing--ssr=false/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "univeex-console-pagina-marketing--ssr=false/public"
+          }
+        ],
+        "styles": [
+          "univeex-console-pagina-marketing--ssr=false/src/styles.scss"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "continuous": true,
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "univeex-console-pagina-marketing--ssr=false:build:production"
+        },
+        "development": {
+          "buildTarget": "univeex-console-pagina-marketing--ssr=false:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "univeex-console-pagina-marketing--ssr=false:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "univeex-console-pagina-marketing--ssr=false/jest.config.ts",
+        "tsConfig": "univeex-console-pagina-marketing--ssr=false/tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "univeex-console-pagina-marketing--ssr=false:build",
+        "port": 4200,
+        "spa": true
+      }
+    }
+  }
+}
