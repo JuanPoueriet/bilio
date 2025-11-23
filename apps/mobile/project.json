@@ -1,28 +1,43 @@
 {
-  "name": "univeex-erp",
+  "name": "univeex-mobile",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "univeex-erp/src",
+  "sourceRoot": "mobile/src",
   "tags": [],
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/univeex-erp",
-        "index": "univeex-erp/src/index.html",
-        "main": "univeex-erp/src/main.ts",
+        "outputPath": "dist/mobile",
+        "index": "mobile/src/index.html",
+        "main": "mobile/src/main.ts",
         "polyfills": ["zone.js"],
-        "tsConfig": "univeex-erp/tsconfig.app.json",
+        "tsConfig": "mobile/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
-            "glob": "**/*",
-            "input": "univeex-erp/public"
+            "glob": "**/*.svg",
+            "input": "node_modules/ionicons/dist/ionicons/svg",
+            "output": "./svg"
           }
         ],
-        "styles": ["univeex-erp/src/styles.scss"]
+        "styles": [
+          "mobile/src/styles.scss",
+          "mobile/src/theme/variables.scss",
+          "node_modules/@ionic/angular/css/core.css",
+          "node_modules/@ionic/angular/css/normalize.css",
+          "node_modules/@ionic/angular/css/structure.css",
+          "node_modules/@ionic/angular/css/typography.css",
+          "node_modules/@ionic/angular/css/display.css",
+          "node_modules/@ionic/angular/css/padding.css",
+          "node_modules/@ionic/angular/css/float-elements.css",
+          "node_modules/@ionic/angular/css/text-alignment.css",
+          "node_modules/@ionic/angular/css/text-transformation.css",
+          "node_modules/@ionic/angular/css/flex-utils.css",
+          "node_modules/@ionic/angular/css/palettes/dark.system.css"
+        ]
       },
       "configurations": {
         "production": {
@@ -56,21 +71,18 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "buildTarget": "univeex-erp:build:production"
+          "buildTarget": "univeex-mobile:build:production"
         },
         "development": {
-          "buildTarget": "univeex-erp:build:development"
+          "buildTarget": "univeex-mobile:build:development"
         }
       },
-      "defaultConfiguration": "development",
-      "options": {
-        "proxyConfig": "apps/univeex-erp/proxy.conf.json"
-      }
+      "defaultConfiguration": "development"
     },
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "buildTarget": "univeex-erp:build"
+        "buildTarget": "univeex-mobile:build"
       }
     },
     "lint": {
@@ -80,15 +92,15 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "univeex-erp/jest.config.ts",
-        "tsConfig": "univeex-erp/tsconfig.spec.json"
+        "jestConfig": "mobile/jest.config.ts",
+        "tsConfig": "mobile/tsconfig.spec.json"
       }
     },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "univeex-erp:build",
+        "buildTarget": "univeex-mobile:build",
         "port": 4200,
         "spa": true
       }

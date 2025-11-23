@@ -1,7 +1,7 @@
 {
   "name": "univeex-api",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/univeex-api/src",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "api/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -10,7 +10,7 @@
       "options": {
         "command": "webpack-cli build",
         "args": ["--node-env=production"],
-        "cwd": "apps/univeex-api"
+        "cwd": "api"
       },
       "configurations": {
         "development": {
@@ -23,8 +23,8 @@
       "cache": true,
       "executor": "@nx/js:prune-lockfile",
       "outputs": [
-        "{workspaceRoot}/dist/apps/univeex-api/package.json",
-        "{workspaceRoot}/dist/apps/univeex-api/package-lock.json"
+        "{workspaceRoot}/dist/api/package.json",
+        "{workspaceRoot}/dist/api/package-lock.json"
       ],
       "options": {
         "buildTarget": "build"
@@ -33,7 +33,7 @@
     "copy-workspace-modules": {
       "dependsOn": ["build"],
       "cache": true,
-      "outputs": ["{workspaceRoot}/dist/apps/univeex-api/workspace_modules"],
+      "outputs": ["{workspaceRoot}/dist/api/workspace_modules"],
       "executor": "@nx/js:copy-workspace-modules",
       "options": {
         "buildTarget": "build"
@@ -65,7 +65,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/univeex-api/jest.config.ts",
+        "jestConfig": "api/jest.config.ts",
         "passWithNoTests": true
       }
     }
